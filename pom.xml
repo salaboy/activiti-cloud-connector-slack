@@ -5,7 +5,7 @@
 
 	<groupId>org.activiti.cloud</groupId>
 	<artifactId>activiti-cloud-connector-slack</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>activiti-cloud-connector-slack</name>
