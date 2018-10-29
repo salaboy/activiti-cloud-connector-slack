@@ -19,11 +19,11 @@ package org.activiti.cloud.connector.impl;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
 
-public interface ExampleConnectorChannels {
+public interface ValidateConnectorChannels {
 
-    String EXAMPLE_CONNECTOR_CONSUMER = "exampleConnectorConsumer";
+    String VALIDATE_CONNECTOR_CONSUMER = "validateConnectorConsumer";
 
-    @Input(EXAMPLE_CONNECTOR_CONSUMER)
-    SubscribableChannel exampleConnectorConsumer();
+    @Input(VALIDATE_CONNECTOR_CONSUMER)
+    SubscribableChannel validateConnectorConsumer();
 
 }
