@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.activiti.cloud</groupId>
-	<artifactId>REPLACE_ME_APP_NAME</artifactId>
+	<artifactId>activiti-cloud-connector-slack</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>REPLACE_ME_APP_NAME</name>
-	<description>Activiti Cloud :: Connector (REPLACE_ME_APP_NAME)</description>
+	<name>activiti-cloud-connector-slack</name>
+	<description>Activiti Cloud :: Connector (activiti-cloud-connector-slack)</description>
 
 
 	<properties>
