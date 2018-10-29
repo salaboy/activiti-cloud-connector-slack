@@ -81,10 +81,11 @@ public class ActivitiCloudSlackBot extends Bot {
         if (!matcher.group(0).isEmpty()) {
             System.out.println("Group 0: "  + matcher.group(0));
             System.out.println("Group 1: "  + matcher.group(1));
+            System.out.println("Group 2: "  + matcher.group(2));
             reply(session, event, new Message("request received and process started"));
             StartProcessPayload startProcessInstanceCmd = ProcessPayloadBuilder.start()
                     .withProcessDefinitionKey("reviewnoti-b1287625-d4f4-40a3-8ce9-863a337e05a8")
-                    .withVariable("title", matcher.group(1))
+                    .withVariable("title", matcher.group(2))
                     .build();
             processRuntimeChannels.myCmdProducer().send(MessageBuilder.withPayload(startProcessInstanceCmd).build());
         }
