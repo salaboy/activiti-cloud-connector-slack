@@ -84,7 +84,7 @@ public class ActivitiCloudSlackBot extends Bot {
             System.out.println("Group 2: "  + matcher.group(2));
             reply(session, event, new Message("request received and process started"));
             StartProcessPayload startProcessInstanceCmd = ProcessPayloadBuilder.start()
-                    .withProcessDefinitionKey("reviewnoti-b1287625-d4f4-40a3-8ce9-863a337e05a8")
+                    .withProcessDefinitionKey("review")
                     .withVariable("title", matcher.group(2))
                     .build();
             processRuntimeChannels.myCmdProducer().send(MessageBuilder.withPayload(startProcessInstanceCmd).build());
