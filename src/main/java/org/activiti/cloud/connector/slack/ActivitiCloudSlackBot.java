@@ -17,6 +17,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
@@ -28,9 +29,14 @@ public class ActivitiCloudSlackBot extends Bot {
 
     Map<String, WebSocketSession> channelsMap = new ConcurrentHashMap<>();
     Map<String, String> channelsIdsMap = new ConcurrentHashMap<>();
+    Map<String, String> cmdToProcessDef = new HashMap<>();
 
     @Value("${slackBotToken}")
     private String slackToken;
+
+    public ActivitiCloudSlackBot() {
+        cmdToProcessDef.put("request-article", "reviewnoti-b1287625-d4f4-40a3-8ce9-863a337e05a8");
+    }
 
     @Autowired
     private ProcessRuntimeChannels processRuntimeChannels;
@@ -79,15 +85,13 @@ public class ActivitiCloudSlackBot extends Bot {
     @Controller(pattern = "(^request-[a-z]+):([aA-zZ 1-9]+)")
     public void onReceiveMessage(WebSocketSession session, Event event, Matcher matcher) {
         if (!matcher.group(0).isEmpty()) {
-            System.out.println("Group 0: "  + matcher.group(0));
-            System.out.println("Group 1: "  + matcher.group(1));
-            System.out.println("Group 2: "  + matcher.group(2));
-            reply(session, event, new Message("request received and process started"));
             StartProcessPayload startProcessInstanceCmd = ProcessPayloadBuilder.start()
-                    .withProcessDefinitionKey("review")
+                    .withProcessDefinitionKey(cmdToProcessDef.get(matcher.group(1)))
                     .withVariable("title", matcher.group(2))
                     .build();
             processRuntimeChannels.myCmdProducer().send(MessageBuilder.withPayload(startProcessInstanceCmd).build());
+            reply(session, event, new Message("Request Received: " + matcher.group(1) + "with title: " + matcher.group(2) + ". Process Started :)"));
+
         }
 
     }
